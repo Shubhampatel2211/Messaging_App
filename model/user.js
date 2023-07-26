@@ -1,9 +1,4 @@
 const promise = require('bluebird')
-var stripe = require('stripe')
-	('sk_test_51NDMfEH8APDdvK1GHg5UWdPJWzkr484qpOL05ezs7j4TLEyBJx8Pph0DkUlSv5q82cHL9yeSJ7t7fCLB5QNr47wG00MvQM9fnt')
-var Notification = require('../model/notification')
-const moment = require('moment')
-const notification = require('../model/notification')
 var b = require('bcrypt')
 class User {
 

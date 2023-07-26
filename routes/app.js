@@ -1,5 +1,4 @@
 const express = require('express');
-const User=require('../model/user')
 const UserController = require('../controller/usercontroller');
 const authMiddleware = require('../middleware/auth');
 const upload= require('../middleware/multer')
