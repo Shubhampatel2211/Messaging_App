@@ -16,10 +16,6 @@ const upload = multer({
     limits: { fileSize: maxSize },
     fileFilter: async function (req, file, callback) {
         var ext = path.extname(file.originalname);
-        // if(ext !== '.pdf' && ext !== '.doc' && ext !== '.xml' && ext !== '.txt' ) {
-        //     return callback(new Error('Only pdf are allowed'));
-        // }
-        //I want next function to validate real ext of files here. 
         callback(null, true); 
       },
     

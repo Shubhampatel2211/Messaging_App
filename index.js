@@ -32,7 +32,6 @@ app.use(express.static(path.join(__dirname, 'profile')));
 app.use('/profile', express.static('profile'));
 
 const io = require('socket.io')(http)
-//app.use('/', routes);
 io.on('connection', (socket) => {
   console.log('User Connection ' + socket.id);
 
@@ -47,7 +46,6 @@ io.on('connection', (socket) => {
     console.log('user_connect sender_id-->', user_id)
     let data = await userControllers.user_list(user_id)
     io.to(socket.id).emit("userlist", data);
-    //socket.emit('userlist', data);
   })
 
   socket.on('createRoom', async ({ room_id, sender_id, receiver_id, date, time }) => {
@@ -82,17 +80,12 @@ io.on('connection', (socket) => {
   socket.on('chatMessage', async (msgData) => {
     let data = await userControllers.socketChatMessage(msgData);
     io.to(msgData.room_id).emit("listChatMessages", data);
-    // let datas= await userControllers.user_list(user_id)
-    // io.to( msgData.room_id).emit("userlist", datas);
-    //io.emit('listChatMessages', data);
   });
 
   socket.on('listChatMessages', async ({ sender_id, receiver_id, room_id }) => {
    
     let data = await userControllers.listChatMessages(room_id);
     io.to(room_id).emit("listChatMessages", data);
-    // io.to(room_id).emit("listChatMessages", data);
-    //io.emit('listChatMessages', data);
   });
 
   socket.on('deleteChatMessages', async (message_id) => {
@@ -106,14 +99,11 @@ io.on('connection', (socket) => {
   });
 
   socket.on('typing', ({ receiver_id, room_id, typingMsg }) =>{
-    // io.sockets.to().emit('typing', typingMsg);
     io.to(room_id).emit('typing', { typingMsg, receiver_id, room_id })
   });
 
   socket.on('stopTyping', ({ receiver_id, room_id, typingMsg }) => {
-    //io.emit('stopTyping', typingMsg);
     io.to(room_id).emit('stopTyping', { receiver_id, room_id, typingMsg })
-    //io.to(room).emit('event', 'message')
   });
 
   socket.on('disconnectUser', async (user_id) => {
@@ -151,38 +141,11 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  // res.render('error');
+ 
   res.json({  
       message: err.message,
       status: false,
       code: res.statusCode
   });
 });
-
-
-// io.on('connection',(socket)=>{
-//   console.log("connected")
-//   console.log("connected====>",socket.id)
-//   socket.on('user-joined',name=>{
-//    console.log(`${name} joined the chat`)
-//     users[socket.id]=name
-//     socket.broadcast.emit('new-user-joined',name)
-//   })
-//   socketsConnected.add(socket.id)
-//   io.emit('clients-total',socketsConnected.size)
-
-//   socket.on('disconnect',()=>{
-//     console.log("disconnected======>",socket.id)
-//     socket.broadcast.emit('left',users[socket.id]);
-//     socketsConnected.delete(socket.id)
-//     io.emit('clients-total',socketsConnected.size)
-//   })
-//   socket.on('message',(data)=>{
-//     console.log(data)
-//     socket.broadcast.emit('chat-message',data)
-//   })
-//   socket.on('feedback',(data)=>{
-//     socket.broadcast.emit('feedback',(data))
-//   })
-// })
 

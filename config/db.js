@@ -18,9 +18,6 @@ class Database {
 				} else {
 					console.log("database connected successfully")
 				}
-				// server.listen(7000, () => {
-				// 	console.log("server is listening on the port 7000")
-				// })
 			});
 			return db.promise();
 

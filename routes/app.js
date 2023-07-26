@@ -20,6 +20,4 @@ router.post('/imageupload',upload.single("image"),UserController.imageupload)
 
 router.post('/dataupload',files.single("files"),UserController.filesupload)
 
-router.post('/templist',UserController.temp)
-
 module.exports=router;

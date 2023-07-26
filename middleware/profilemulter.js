@@ -19,11 +19,7 @@ const upload = multer({
         if(ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg' ) {
             return callback(new Error('Only images are allowed'));
         }
-        // I want next function to validate real ext of files here. 
         callback(null, true); 
       },
-    
 });
-
-
 module.exports = upload
