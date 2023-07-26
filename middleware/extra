@@ -1,0 +1,29 @@
+// insert into orders(order date,user_id,subtotal,delivery_charge,grandtotal,paymenttype,address_id,status,coupen_id,)
+
+
+// select products.price as price ,products.discount as discount,products.discount_price as discount_price,addtocart.quantity as quantity from products inner join addtocart on products.product_id=addtocart.product_id where addtocart.user_id='${id}' inner join orders on orders.order_id=addtocart.user_id where orders.user_id='${id}'
+
+//  select orders.order_id,order_paymenttype,order_date,address.housedetail, address.landmark, from orders inner join address on address.address_id=orders.address_id where orders.user_id='${id}'
+
+// select orders.order_id as order_id,orders.paymenttype as paymenttype ,orders.order_date as order_date,address.housedetail as housedetail, address.landmark as landmark from orders inner join products on orders.user_id=products.user_id where orders.user_id='${id}' and orders.order_id='${order_id}'
+
+
+// select * from orderitem inner join products on orders.user_id=products.user_id where orders.user_id=56 and orders.order_id=46
+
+// select subtotal,delivery_charge,grandtotal from orders where order_id=47
+// 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
+
+
+
+
+
+
+
+
+    
+      
+
+
+
+
+
